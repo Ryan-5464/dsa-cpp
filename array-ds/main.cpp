@@ -1,9 +1,8 @@
 #include <iostream>
-#include "intArray.hpp"
+#include "testArrayTypes.hpp"
 
 int main() {
-    int4Array *array = new int4Array(5);
-    printf("size of int = %ld", sizeof(int));
-    printf("size of long = %ld", sizeof(long));
+    TestArrayTypes test;
+    int result = test.testInt8ArrayLengthFunc();
     return 0;
 }

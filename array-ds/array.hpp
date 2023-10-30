@@ -6,7 +6,7 @@ class Array {
     protected:
         int length;
         int size;
-        void *start;
+        char *start;
         
     public:
         int getLength();

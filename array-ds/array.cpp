@@ -16,7 +16,7 @@ int Array::getElement(int idx) {
         printf("ERROR: index out of range. Max index = %d \n", length);
         return -1;
     }
-    return start[idx];
+    return *reinterpret_cast<int*>(static_cast<char*>(start) + idx);
 }
 
 void Array::printArray() {
@@ -32,6 +32,6 @@ int Array::setElement(int idx, int val) {
         printf("ERROR: index out of range. Max index = %d \n", length);
         return -1;
     }
-    start[idx] = val;
+    this->start[idx] = val;
     return 0;
 }

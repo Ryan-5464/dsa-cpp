@@ -1,0 +1,24 @@
+#ifndef INT8_TARRAY_HPP
+#define INT8_TARRAY_HPP
+
+#include <cstdint>
+
+class Int8Array {
+
+private:
+    int _length;
+    int _size;
+    int8_t *_head;
+
+public:
+    Int8Array(int len);
+    ~Int8Array();
+    int length();
+    int size();
+    void print();
+    
+    int8_t get(int idx);
+    void set(int idx, int val);
+};
+
+#endif
