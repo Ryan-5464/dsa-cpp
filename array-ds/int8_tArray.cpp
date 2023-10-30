@@ -1,3 +1,9 @@
+/* 
+    Author: Ryan Tandy
+    Date: 30/10/2023
+    License: GNU PL V3.0
+*/
+
 #ifndef INT8_TARRAY_CPP
 #define INT8_TARRAY_CPP
 
