@@ -4,55 +4,61 @@
     License: GNU PL V3.0
 */
 
-#ifndef INT8_TARRAY_CPP
-#define INT8_TARRAY_CPP
+#ifndef ARRAY_CPP
+#define ARRAY_CPP
 
-#include "int8_tArray.hpp"
-#include <cstdint>
+#include "Array.hpp"
 #include <iostream>
 
-Int8Array::Int8Array(int len) : _length(len) {
-    _size = _length * sizeof(int8_t);
+template <typename T> 
+Array<T>::Array(int len) {
+    _size = _length * sizeof(T);
     if (_size > _MAX_SIZE_BYTES) {
-        int const MAX_LENGTH = _MAX_SIZE_BYTES / sizeof(int8_t);
-        throw std::invalid_argument("Desired length too large. Max number of elements the array can hold is = " + std::to_string(MAX_LENGTH));
+        int const maxLength = _MAX_SIZE_BYTES / sizeof(T);
+        throw std::invalid_argument("Desired length too large. Max number of elements the array can hold is = " + std::to_string(maxLength));
     }
-    _head = new int8_t[_length];
+    _head = new T[_length];
     for (int i=0; i < _length; i++) {
         _head[i] = 0;
-    }
+    }         
+};
+        
+template <typename T> 
+Array<T>::~Array() {
+    delete _head;
 };
 
-Int8Array::~Int8Array() {
-    delete _head;
-}
-
-int Int8Array::length() {
-    return _length;
-}
-
-int Int8Array::size() {
-    return _size;
-}
-
-void Int8Array::print() {
-    std::cout << "Array = {";
-    for (int i=0; i < _length; i++) {
-        std::cout << _head[i] << ",";
-    }
+template <typename T>
+void Array<T>::print() {
+    std::cout << "array = {";
+    for (int i=0; i <_length; i++) {
+        std::cout << _head[i] << ", ";
+    };
     std::cout << "}" << std::endl;
-}
+};
 
-int8_t Int8Array::get(int idx) {
+template <typename T>
+int Array<T>::length() {
+    return _length;
+};
+
+template <typename T>
+int Array<T>::size() {
+    return _size;
+};
+
+template <typename T>
+T Array<T>::getElement(int idx) {
     if ((idx >= _length) || (idx < 0)) {
         std::cout << "Error: Index out of range. Max allowed index = ";
         std::cout << _length - 1 << std::endl; 
         return -127;
     }
     return _head[idx];
-}
+};
 
-int Int8Array::set(int idx, int val) {
+template <typename T>
+T Array<T>::setElement(int idx, T val) {
     if ((idx >= _length) || (idx < 0)) {
         std::cout << "Error: Index out of range. Max allowed index = ";
         std::cout << _length - 1 << std::endl; 
@@ -65,6 +71,7 @@ int Int8Array::set(int idx, int val) {
     }
     _head[idx] = val;
     return 0;
-}
+};
 
 #endif
+

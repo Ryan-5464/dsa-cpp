@@ -12,6 +12,7 @@
 class Int8Array {
 
 private:
+    int const _MAX_SIZE_BYTES = 1000000; 
     int _length;
     int _size;
     int8_t *_head;
@@ -24,7 +25,7 @@ public:
     void print();
     
     int8_t get(int idx);
-    void set(int idx, int val);
+    int set(int idx, int val);
 };
 
 #endif

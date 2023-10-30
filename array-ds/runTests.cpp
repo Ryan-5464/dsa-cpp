@@ -9,6 +9,13 @@
 
 int main() {
     TestArrayTypes test;
-    int result = test.testInt8ArrayLengthFunc();
+    int result;
+    result = test.LengthFunc_ReturnsCorrectLength();
+    result = test.testInt8ArraySizeFunc();
+    result = test.testInt8ArrayGetFunc();
+    result = test.testInt8ArraySetFunc();
+    result = test.testInt8ArrayGetFuncWithOutOfRangeIdx();
+    result = test.testInt8ArrayConstructArrayWithTooManyElements();
+    result = test.testInt8ArrayConstructArrayWithMaxElements();
     return 0;
 }
