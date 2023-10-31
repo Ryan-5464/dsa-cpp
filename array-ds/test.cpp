@@ -1,6 +1,6 @@
 #include <iostream>
+#include <cstdint>
 
 int main() {
-    int arr[3] = {0,0,0};
-    std::cout << arr[-1] << std::endl;
+    int8_t arr[1] = {-129};
 }
