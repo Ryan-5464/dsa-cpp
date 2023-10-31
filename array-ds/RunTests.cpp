@@ -76,11 +76,28 @@ void testArray_constructor() {
     test.testArray_constructor_throwsErrorIfArrayLengthToLarge<Array<char32_t>>(250001, failFuncName);
 };
 
+void testArray_getElement() {
+    ArrayTest test;
+    std::string passFuncName = "testArray_get_returnsCorrectElement"; 
+    std::string failFuncName = "testArray_get_throwsErrorIfIndexOutOfRange";
+
+    Array<int8_t> int8Array = Array<int8_t>(5);
+    test.testArray_get_returnsCorrectElement(&int8Array, 4, 0, passFuncName);
+    test.testArray_get_throwsErrorIfIndexOutOfRange(&int8Array, 5, 0, failFuncName);
+    test.testArray_get_throwsErrorIfIndexOutOfRange(&int8Array, -1, 0, failFuncName);
+
+    Array<int16_t> int16Array = Array<int16_t>(5);
+    test.testArray_get_returnsCorrectElement(&int16Array, 4, 0, passFuncName);
+    test.testArray_get_throwsErrorIfIndexOutOfRange(&int16Array, 5, 0, failFuncName);
+    test.testArray_get_throwsErrorIfIndexOutOfRange(&int16Array, -1, 0, failFuncName);
+};
+
 
 int main() {
     testArray_length();
     testArray_size();
     testArray_constructor();
+    testArray_getElement();
     return 0;
 };
 

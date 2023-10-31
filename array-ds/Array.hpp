@@ -29,9 +29,10 @@ class Array {
                 int const maxLength = _MAX_SIZE_BYTES / sizeof(T);
                 throw std::invalid_argument("Desired length too large. Max number of elements the array can hold is = " + std::to_string(maxLength));
             }
-            _head = new T[_length];
+            _head = new T[_length]; // Need to delete this?
+            T defaultVal = 0;
             for (int i=0; i < _length; i++) {
-                _head[i] = 0;
+                _head[i] = defaultVal;
             }         
         };
                 
@@ -58,7 +59,7 @@ class Array {
 
         T getElement(int idx) {
             if ((idx >= _length) || (idx < 0)) {
-                std::cout << "Error: Index out of range. Max allowed index = ";
+                std::cout << "Error: Index out of range. Allowed index range = 0 -> ";
                 std::cout << _length - 1 << std::endl; 
                 return -127;
             }

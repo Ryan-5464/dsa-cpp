@@ -78,8 +78,38 @@ class ArrayTest {
             }
         };
 
-        bool testArray_get_returnsCorrectElement();
-        bool testArray_get_throwsErrorIfIndexOutOfRange();
+        template <typename T1, typename T2>
+        void testArray_get_returnsCorrectElement(
+            T1 *array,
+            int idx,
+            T2 expVal,
+            std::string funcName
+        ) {
+            if (array->getElement(idx) == expVal) {
+                TEST_PASS(funcName);
+            } else {
+                std::cout << "Value = " << array->getElement(idx) << std::endl;
+                std::cout << "Expected value = " << expVal << std::endl;
+                TEST_FAIL(funcName);
+            };
+        };
+
+        template <typename T1, typename T2>
+        void testArray_get_throwsErrorIfIndexOutOfRange(
+            T1 *array,
+            int idx,
+            T2 expVal,
+            std::string funcName
+        ) {
+            if (array->getElement(idx) == expVal) {
+                std::cout << "Value = " << array->getElement(idx) << std::endl;
+                std::cout << "Expected value = " << expVal << std::endl;
+                TEST_FAIL(funcName);
+            } else {
+                TEST_PASS(funcName);
+            };
+        };
+
         bool testArray_set_setsElementCorrectly();
         bool testArray_set_throwsErrorIfIndexOutOfRange();
 };
