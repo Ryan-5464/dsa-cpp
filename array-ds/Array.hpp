@@ -20,6 +20,9 @@ class Array {
         T *_head;
 
     public:
+
+        Array() : _length(0), _size(0), _head(nullptr) {};
+
         Array(int len) : _length(len) {
             _size = _length * sizeof(T);
             if (_size > _MAX_SIZE_BYTES) {
