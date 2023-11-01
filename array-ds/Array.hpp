@@ -1,7 +1,7 @@
 /* 
     Author: Ryan Tandy
     Created: 30/10/2023
-    LastUpdated: 01/11/2023Test
+    LastUpdated: 01/11/2023
     License: GNU PL V3.0
 */
 
@@ -41,9 +41,11 @@ class Array {
         };
 
         void print() {
+            int outVal;
             std::cout << "array = {";
             for (int i=0; i <_length; i++) {
-                std::cout << _head[i] << ", ";
+                int outVal = static_cast<int>(_head[i]);
+                std::cout << outVal << ", ";
             };
             std::cout << "}" << std::endl;
         };

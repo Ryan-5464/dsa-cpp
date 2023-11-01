@@ -6,7 +6,7 @@
 */
 
 ### Compile command (linux)
-g++ RunTests.cpp Test-Array.hpp Array.hpp -o run-tests.cpp
+g++ ArrayTestCases.cpp ArrayTest.hpp Array.hpp -o run-tests.cpp
 
 ### Run command (linux)
 ./run-tests.cpp
