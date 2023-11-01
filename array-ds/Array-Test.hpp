@@ -7,11 +7,11 @@
 
 #ifndef ARRAY_TEST_HPP
 #define ARRAY_TEST_HPP
-#define TEST_FAIL(func) \
-    std::cout << "Test failed! for function "; \
+#define TEST_FAIL(funcName) \
+    std::cout << "FAIL: Test failed! for function "; \
     std::cout << funcName << std::endl; \
     exit(0); 
-#define TEST_PASS(func) \
+#define TEST_PASS(funcName) \
     std::cout << "PASSED: " << funcName << std::endl;
 
 #include <iostream>
@@ -29,8 +29,8 @@ class ArrayTest {
                 if (array->length() == expLen) {
                     TEST_PASS(funcName);
                 } else{
-                    std::cout << "Length = " << array->length() << std::endl;
-                    std::cout << "Expected length = " << expLen << std::endl;
+                    std::cout << "FAIL: Length = " << array->length() << std::endl;
+                    std::cout << "FAIL: Expected length = " << expLen << std::endl;
                     TEST_FAIL(funcName);
                 };
         };
@@ -44,9 +44,9 @@ class ArrayTest {
             if (array->size() == expSize) {
                 TEST_PASS(funcName);
             } else {
-                std::cout << "Size = " << array->size() << std::endl;
-                std::cout << "Expected size = " << expSize << std::endl;
-                TEST_FAIL(func);
+                std::cout << "FAIL: Size = " << array->size() << std::endl;
+                std::cout << "FAIL: Expected size = " << expSize << std::endl;
+                TEST_FAIL(funcName);
             };
         };
         
@@ -59,7 +59,7 @@ class ArrayTest {
                 T Array(len);
                 TEST_PASS(funcName);
             } catch (const std::exception& e) {
-                std::cerr << "Exception: " << e.what() << std::endl;
+                std::cerr << "FAIL: Exception: " << e.what() << std::endl;
                 TEST_FAIL(funcName);
             }
         };
@@ -79,48 +79,57 @@ class ArrayTest {
         };
 
         template <typename T1, typename T2>
-        void testArray_get_returnsCorrectElement(
+        void testArray_get_set_setsAndReturnsCorrectElement(
             T1 *array,
             int idx,
+            T2 setVal,
             T2 expVal,
             std::string funcName
         ) {
-            if (array->getElement(idx) == expVal) {
+            array->setElement(idx, setVal);
+            T2 element = array->getElement(idx);
+            if (element == expVal) {
                 TEST_PASS(funcName);
             } else {
-                std::cout << "Value = " << array->getElement(idx) << std::endl;
-                std::cout << "Expected value = " << expVal << std::endl;
+                int intElement = static_cast<int>(element); 
+                int intExpVal = static_cast<int>(expVal); 
+                std::cout << "FAIL: Value = " << intElement << std::endl;
+                std::cout << "FAIL: Expected value = " << intExpVal << std::endl;
                 TEST_FAIL(funcName);
+            };
+        };
+
+        template <typename T>
+        void testArray_get_throwsErrorIfIndexOutOfRange(
+            T *array,
+            int idx,
+            std::string funcName
+        ) {
+            try {
+                int element = array->getElement(idx);
+                std::cout << "Index in range. Index = " << idx <<std::endl;
+                TEST_FAIL(funcName);
+            } catch (const std::exception& e) {
+                TEST_PASS(funcName);
             };
         };
 
         template <typename T1, typename T2>
-        void testArray_get_throwsErrorIfIndexOutOfRange(
+        void testArray_set_throwsErrorIfIndexOutOfRange(
             T1 *array,
             int idx,
-            T2 expVal,
+            T2 setVal,
             std::string funcName
         ) {
-            if (array->getElement(idx) == expVal) {
-                std::cout << "Value = " << array->getElement(idx) << std::endl;
-                std::cout << "Expected value = " << expVal << std::endl;
+            try {
+                T2 element = array->setElement(idx, setVal);
+                std::cout << "FAIL: Index in range. Index = " << idx <<std::endl;
                 TEST_FAIL(funcName);
-            } else {
+            } catch (const std::exception& e) {
                 TEST_PASS(funcName);
             };
         };
 
-        bool testArray_set_setsElementCorrectly();
-        bool testArray_set_throwsErrorIfIndexOutOfRange();
 };
 
 #endif
-
-/*
-    Test cases:
-        test length
-        test size for each type
-        test set element for each type
-        test get element for each type
-        test constructor
-*/

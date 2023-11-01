@@ -59,23 +59,17 @@ class Array {
 
         T getElement(int idx) {
             if ((idx >= _length) || (idx < 0)) {
-                std::cout << "Error: Index out of range. Allowed index range = 0 -> ";
-                std::cout << _length - 1 << std::endl; 
-                return -127;
+                throw std::invalid_argument("Error: Index out of range. Allowed index range = 0 -> " + std::to_string(_length - 1));
             }
             return _head[idx];
         };
 
         T setElement(int idx, T val) {
             if ((idx >= _length) || (idx < 0)) {
-                std::cout << "Error: Index out of range. Max allowed index = ";
-                std::cout << _length - 1 << std::endl; 
-                return -127;
+                throw std::invalid_argument("Error: Index out of range. Allowed index range = 0 -> " + std::to_string(_length - 1));
             }
             if ((idx >= _length) || (idx < 0)) {
-                std::cout << "Error: Index out of range. Max allowed index = ";
-                std::cout << _length - 1 << std::endl; 
-                return -127;
+                throw std::invalid_argument("Error: Index out of range. Allowed index range = 0 -> " + std::to_string(_length - 1));
             }
             _head[idx] = val;
             return 0;
