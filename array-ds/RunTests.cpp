@@ -1,7 +1,7 @@
 /* 
     Author: Ryan Tandy
     Created: 31/10/2023
-    LastUpdated: 31/10/2023
+    LastUpdated: 01/11/2023
     License: GNU PL V3.0
 
     Notes: 2 types with known sizes, int8_t & int16_t are used to test the array
